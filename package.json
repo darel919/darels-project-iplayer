@@ -1,16 +1,25 @@
 {
-  "name": "dpOnNuxt",
+  "name": "dp-on-nuxt",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/image": "^1.8.1",
+    "@nuxt/ui": "^2.18.7",
+    "@nuxtjs/html-validator": "^1.8.2",
+    "@nuxtjs/robots": "^4.1.11",
+    "@nuxtjs/seo": "^2.0.0-rc.23",
+    "@nuxtjs/sitemap": "^6.1.4",
+    "@unhead/shared": "^1.11.11",
+    "hls.js": "^1.5.17",
     "nuxt": "^3.13.2",
+    "nuxt-time": "^1.0.2",
     "vue": "latest",
     "vue-router": "latest"
   }
