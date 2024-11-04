@@ -1,14 +1,18 @@
 <template>
     <NuxtLoadingIndicator/>
-    <UContainer>
-        <NuxtLayout>
-            <NuxtPage />
+    <!-- <UContainer> -->
+        <NuxtLayout id="mainPage">
+            <NuxtPage/>
         </NuxtLayout>
-    </UContainer>
+    <!-- </UContainer> -->
     <UNotifications />
 </template>
 
 <style>
+#mainPage {
+    margin-top:96px;
+    padding: 0 2rem 0 2rem;
+}
 @font-face {
     font-family: 'SegoeUI' !important;
     src: local('Segoe UI'),

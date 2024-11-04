@@ -2,7 +2,7 @@
     <h1 class="text-2xl font-bold">Welcome to darel's Project</h1>
     <div v-for="video in data" :key="video.content_id">
       <NuxtLink :to="{name: 'watch', query: {v: video.content_id}}" class="video-items">
-          <NuxtImg class="rounded" loading="lazy" sizes="md:256px" width="160" :placeholder="[160, 90]" :src="`${video.ytData.videoThumbnails[4].url}`" :alt="`${video.ytData.title}'s thumbnail`"/>
+          <NuxtImg class="rounded" loading="lazy" sizes="md:256px" width="160" :placeholder="[160, 90]" :src="`${video.ytData.videoThumbnails[4].url}`" :alt="`${video.ytData.title}'s`"/>
           <section>
             <h2 class="font-semibold">{{ video.ytData.title }}</h2>
             <NuxtTime class="text-xs" :datetime="`${video.created_at}`" relative/>
@@ -22,8 +22,8 @@ const { error, data } = useFetch('/dp', {
     sortBy: 'desc'
   },
   method: 'GET',
-  immediate: true,
-  watch: false,
+  key: 'home-fetch',
+  server: true,
 })
 onMounted(() => {
     setMetadata()

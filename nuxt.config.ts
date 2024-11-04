@@ -4,13 +4,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   routeRules: {
-    '/': {prerender: true},
     '/iplayer': {ssr: false},
   },
   runtimeConfig: {
     public: {
-      APIEndpoint: 'http://10.10.10.10:328'
-      // APIEndpoint: process.env.NODE_ENV === 'development' ? 'http://10.10.10.10:328': 'https://darelisme.my.id/api',
+      // APIEndpoint: 'http://10.10.10.10:328'
+      APIEndpoint: process.env.NODE_ENV === 'development' ? 'http://10.10.10.10:328': 'https://api.darelisme.my.id',
     }
   },
 

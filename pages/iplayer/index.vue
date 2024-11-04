@@ -1,7 +1,28 @@
 <template>
-  <Iplayer id="iplayer"/>
+  <Iplayer id="iplayer" :playerData="video" v-if="video"/>
+  <div v-else>
+    <h1>Loading player...</h1>
+  </div>
 </template>
 
+<script setup>
+const video = ref(null)
+onMounted(() => {
+  runiPlayerFetcher()
+})
+async function runiPlayerFetcher() {
+  const videoData = await $fetch('/dp/watch', {
+    query: {
+      v: useRoute().query.v
+    },
+    baseURL: useRuntimeConfig().public.APIEndpoint
+  })
+  if(videoData) {
+    // console.log(videoData)
+    video.value = videoData;
+  }
+}
+</script>
 <style scoped>
 
 #iplayer {
