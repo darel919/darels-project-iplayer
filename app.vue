@@ -1,10 +1,8 @@
 <template>
     <NuxtLoadingIndicator/>
-    <!-- <UContainer> -->
-        <NuxtLayout id="mainPage">
-            <NuxtPage/>
-        </NuxtLayout>
-    <!-- </UContainer> -->
+    <NuxtLayout id="mainPage">
+        <NuxtPage/>
+    </NuxtLayout>
     <UNotifications />
 </template>
 

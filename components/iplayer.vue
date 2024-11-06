@@ -2,7 +2,15 @@
   <div class="video-parent">
     <main>
       <video ref="videoRef" v-if="isSelfMode" id="video" controls autoplay preload="auto"/>
-      <iframe v-else class="iplayer" loading="eager" title="Player" allowfullscreen allow="autoplay" :src="`https://inv.nadeko.net/embed/${video.vid_uid}?autoplay=1&continue=0&related_videos=false&player_style=youtube&local=${useProxy}&subtitles=id&quality=dash&quality_dash=auto&comments=false&extend_desc=false&thinmode=true`"/>
+      <div id="iframe" v-else>
+        <div v-if="loadingIframe">
+          <h1 class="text-2xl font-bold">Loading iframe...</h1>
+          <UProgress animation="swing" class="mb-4 mt-4"/>
+          <h2>Waiting YouTube response</h2>
+        </div>
+        <iframe v-show="!loadingIframe" class="iplayer" @load="onIframeLoad" loading="eager" title="Player" allowfullscreen allow="autoplay" :src="`https://inv.nadeko.net/embed/${video.vid_uid}?autoplay=1&continue=0&related_videos=false&player_style=youtube&local=${useProxy}&subtitles=id&quality=dash&quality_dash=auto&comments=false&extend_desc=false&thinmode=true`"/>
+      </div>
+     
       <h1 v-if="errorMsg">Can't play this title right now. Sorry about that!</h1>
     </main>
   </div>
@@ -18,8 +26,10 @@ const video = computed(() => props.playerData);
 const isSelfMode = ref(false);
 const errorMsg = ref(null);
 const isSelfPreferred = ref(true);
+const loadingIframe = ref(true);
 const useProxy = ref(false);
 const runtimeConfig = useRuntimeConfig(); // Ensure it's in the correct context
+const toast = useToast()
 
 watch(() => props.playerData, async (newVal) => {
   if (newVal.selfHostUrl) {
@@ -68,18 +78,20 @@ async function initializeVideo() {
     });
   }
 }
-
+function onIframeLoad() { loadingIframe.value = false; }
 onMounted(() => {
   if (isSelfMode.value) {
     nextTick(() => {
       initializeVideo();
     });
+  } else {
+    // toast.add({ title: 'Loading YouTube iframe', timeout: 1000 })
   }
 });
 </script>
 
 <style scoped>
-.video-parent, main, video, iframe {
+.video-parent, main, video, iframe, #iframe {
   width: 100%;
   height: 100%;
   display: flex;
