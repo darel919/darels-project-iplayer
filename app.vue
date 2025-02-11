@@ -1,5 +1,5 @@
 <template>
-    <NuxtLoadingIndicator/>
+    <!-- <NuxtLoadingIndicator/> -->
     <NuxtLayout id="mainPage">
         <NuxtPage/>
     </NuxtLayout>
@@ -7,10 +7,10 @@
 </template>
 
 <style>
-#mainPage {
+/* #mainPage {
     margin-top:96px;
     padding: 0 2rem 0 2rem;
-}
+} */
 @font-face {
     font-family: 'SegoeUI' !important;
     src: local('Segoe UI'),
