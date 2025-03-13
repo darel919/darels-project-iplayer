@@ -21,5 +21,9 @@
 }
 html, body {
     font-family: 'SegoeUI', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    
+}
+html {
+    background-color: black;
 }
 </style>

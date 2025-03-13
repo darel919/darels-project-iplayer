@@ -14,7 +14,8 @@ const runtimeConfig = useRuntimeConfig(); // Ensure it's in the correct context
 const toast = useToast()
 
 watch(() => props.playerData, async (newVal) => {
-  bgUrl.value = `${useRuntimeConfig().public.APIEndpoint}/${props.playerData.thumbnail}`;
+  bgUrl.value = `${useRuntimeConfig().public.APIEndpoint}/dp/thumb?id=${useRoute().query.v}`;
+  // bgUrl.value = `${useRuntimeConfig().public.APIEndpoint}/${props.playerData.thumbnail}`;
   if (newVal.selfHostUrl) {
     isSelfMode.value = true;
     await nextTick(); // Wait for the DOM to update
@@ -38,6 +39,7 @@ async function initializeVideo() {
   const hlsUrl = runtimeConfig.public.APIEndpoint + video.value.selfHostUrl;
   
   // console.log(hlsUrl);
+  // console.log(video.value)
 
   if (Hls.isSupported()) {
     if (hls) {
@@ -87,7 +89,7 @@ onMounted(() => {
           <UProgress animation="swing" class="mb-4 mt-4"/>
           <h2>Waiting YouTube response</h2>
         </div>
-        <iframe v-show="!loadingIframe" class="iplayer" @load="onIframeLoad" loading="eager" title="Player" allowfullscreen allow="autoplay" :src="`${useRuntimeConfig().public.APIEndpoint}/dp/watch/ilink?v=${video.vid_uid}&useProxy=${useProxy}`"/>
+        <iframe v-show="!loadingIframe" class="iplayer" @load="onIframeLoad" loading="eager" title="Player" allowfullscreen allow="autoplay" :src="`${useRuntimeConfig().public.APIEndpoint}/dp/watch/ilink?v=${video.yt_vid_id}&useProxy=${useProxy}`"/>
       </div>
      
       <h1 v-if="errorMsg">Can't play this title right now. Sorry about that!</h1>

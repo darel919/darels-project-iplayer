@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   runtimeConfig: {
@@ -8,5 +8,5 @@ export default defineNuxtConfig({
       APIEndpoint: process.env.NODE_ENV === 'development' ? 'http://10.10.10.10:328': 'https://api.darelisme.my.id',
     }
   },
-  modules: ['@nuxt/ui', '@nuxtjs/html-validator'],
+  modules: ['@nuxt/ui'],
 })
